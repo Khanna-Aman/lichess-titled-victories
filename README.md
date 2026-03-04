@@ -12,9 +12,12 @@ Track how many titled players you've defeated on Lichess! Analyze your games to 
 ## ✨ Features
 
 - 🎯 **Track all titled players**: GM, IM, FM, CM, WGM, WIM, WFM, WCM, NM, LM
-- 📊 **Clean summary**: Just the counts you want to see
+- 📊 **Unique opponents**: See distinct titled players beaten vs total game wins
+- 📈 **Rich visualizations**: Bar charts, rating histograms, win timelines, time control breakdown
+- 🔄 **Comparison mode**: Compare two players side-by-side with head-to-head charts
 - 💾 **Auto-export CSV**: Detailed game data saved automatically
-- ⚡ **Flexible analysis**: Choose time controls and game scope
+- 🔁 **Retry logic**: Automatic retries with exponential backoff on API errors
+- ⚡ **Progress bar**: Live progress tracking during game fetching
 - 🆓 **Completely free**: No tokens or authentication required
 - 🎮 **Easy to use**: Simple interface, no coding required
 
@@ -43,7 +46,7 @@ Track how many titled players you've defeated on Lichess! Analyze your games to 
 
 - **No registration required** - works immediately
 - **No API tokens needed** - uses free Lichess API
-- **No rate limits** - reasonable usage is always allowed
+- **Respects rate limits** - automatic retry with backoff if rate-limited
 
 ## 📋 Requirements
 
@@ -55,26 +58,28 @@ Track how many titled players you've defeated on Lichess! Analyze your games to 
 - `requests` - API calls
 - `pandas` - Data analysis
 - `ipywidgets` - Interactive interface
+- `matplotlib` - Charts and visualizations
 
 ## 🎮 Usage Examples
 
 ### Basic Analysis
 ```
-Username: your_lichess_username
+Username 1: your_lichess_username
 Time Control: All time controls
 Game Scope: Recent 500 games
 ```
 
-### Specific Format
+### Comparing Two Players
 ```
-Username: your_lichess_username  
-Time Control: Bullet
+Username 1: player_one
+Username 2: player_two
+Time Control: Blitz
 Game Scope: Recent 1000 games
 ```
 
 ### Complete History
 ```
-Username: your_lichess_username
+Username 1: your_lichess_username
 Time Control: All time controls
 Game Scope: All games (complete history)
 ```
@@ -84,22 +89,22 @@ Game Scope: All games (complete history)
 ```
 🏆 YOUR_USERNAME vs TITLED PLAYERS
 
-📊 RESULTS:
-  IM: 3
-  FM: 8
+📊 RESULTS (wins / unique opponents):
+  IM: 5  (3 unique)
+  FM: 8  (5 unique)
   CM: 2
 
-🎉 TOTAL: 13 titled players beaten!
+🎉 TOTAL: 15 wins against 10 unique titled players!
 
 💾 Results saved to: your_username_titled_players.csv
-📁 Contains 13 games with full details
-
-📋 Preview (first 3 games):
-Title | Opponent    | Rating | Date       | Time_Control
-IM    | PlayerName1 | 2650   | 2024-01-15 | Bullet
-FM    | PlayerName2 | 2450   | 2024-01-20 | Blitz
-IM    | PlayerName3 | 2580   | 2024-01-10 | Rapid
+📁 Contains 15 games with full details
 ```
+
+### Visualizations Include
+- **Wins by Title** - Bar chart showing victories per title category
+- **Opponent Rating Distribution** - Histogram with average rating line
+- **Titled Wins Over Time** - Cumulative timeline of your titled scalps
+- **Wins by Time Control** - Pie chart breakdown (Bullet, Blitz, Rapid, etc.)
 
 ## 🔧 Troubleshooting
 
@@ -118,8 +123,8 @@ IM    | PlayerName3 | 2580   | 2024-01-10 | Rapid
 - Try again later if busy
 
 **Rate limit errors?**
-- Wait a moment and try again
-- Lichess API is very generous with free usage
+- The tool automatically retries with backoff
+- Wait a moment and try again if it persists
 
 ## 🛡️ Privacy & Security
 
@@ -127,10 +132,11 @@ IM    | PlayerName3 | 2580   | 2024-01-10 | Rapid
 - **No authentication**: Uses public API, no login required
 - **Read-only access**: Only reads your public game data
 - **No personal info**: Only analyzes game results
+- **No API keys**: Zero credentials required or stored
 
 ## 📝 License
 
-MIT License - Feel free to use, modify, and share!
+MIT License - See [LICENSE](LICENSE) for details.
 
 ## 🤝 Contributing
 
@@ -141,9 +147,8 @@ Found a bug or want to add features?
 
 ## 🙏 Credits
 
-- **Lichess**: For the amazing free chess platform and API
+- **[Lichess](https://lichess.org)**: For the amazing free chess platform and API
 - **Chess community**: For inspiration and feedback
-- **Contributors**: Everyone who helped improve this tool
 
 ---
 
